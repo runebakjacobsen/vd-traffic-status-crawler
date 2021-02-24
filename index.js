@@ -48,7 +48,7 @@ const formatData = async (data) => {
 
 const writeToCsv = async (data) => {
   let writer = csvWriter();
-  const file = "out.csv";
+  const file = __dirname + "/out.csv";
   writer = csvWriter({ sendHeaders: false });
 
   if (!fs.existsSync(file)) {
@@ -84,5 +84,6 @@ const getVdDataAdWriteToCsv = async () => {
 
 schedule.scheduleJob("15 * * * *", function () {
   getVdDataAdWriteToCsv();
+
   console.log("Done");
 });
