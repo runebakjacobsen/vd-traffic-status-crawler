@@ -81,4 +81,6 @@ const getVdDataAdWriteToCsv = async () => {
   console.log("Done");
 };
 
-setInterval(() => getVdDataAdWriteToCsv(), 60000);
+const ONE_MINUTE = 60000;
+
+setInterval(() => getVdDataAdWriteToCsv(), 15 * ONE_MINUTE);
