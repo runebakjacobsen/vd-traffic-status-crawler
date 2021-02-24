@@ -2,6 +2,7 @@ const fetch = require("node-fetch");
 var xml2js = require("xml2js");
 var fs = require("fs");
 var csvWriter = require("csv-write-stream");
+var schedule = require("node-schedule");
 
 const getTrafficDensityStatus = async () => {
   const response = await fetch(
@@ -81,6 +82,7 @@ const getVdDataAdWriteToCsv = async () => {
   console.log("Done");
 };
 
-const ONE_MINUTE = 60000;
-
-setInterval(() => getVdDataAdWriteToCsv(), 15 * ONE_MINUTE);
+schedule.scheduleJob("15 * * * *", function () {
+  getVdDataAdWriteToCsv();
+  console.log("Done");
+});
