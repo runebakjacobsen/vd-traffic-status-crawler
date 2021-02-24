@@ -82,8 +82,16 @@ const getVdDataAdWriteToCsv = async () => {
   console.log("Done");
 };
 
-schedule.scheduleJob("15 * * * *", function () {
+const rule = new schedule.RecurrenceRule();
+rule.minute = [0, 15, 30, 45];
+
+const job = schedule.scheduleJob(rule, function (fireDate) {
   getVdDataAdWriteToCsv();
 
-  console.log("Done");
+  console.log(
+    "This job was supposed to run at " +
+      fireDate +
+      ", but actually ran at " +
+      new Date()
+  );
 });
